@@ -50,9 +50,9 @@ class Edit extends React.Component {
         alert('Hey there Budgeteer!\n\nYou Applied An Update To Your Transaction!')
         window.location.reload();
         // refresh the data
-        this.getTransaction();
+        //this.getTransaction();
       })
-      .catch(err => console.log(err));
+      //.catch(err => console.log(err));
   };
 
   render() {
