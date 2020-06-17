@@ -11,6 +11,8 @@ import Income from "./screens/Income";
 import Expense from "./screens/Expense";
 import Savings from "./screens/Savings";
 import Help from "./screens/Help"; 
+import SignUp from "./screens/SignUp";
+import Login from "./screens/Login";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
             </div> 
           <GlorifiedCalculator />
           <Switch>
+            <Route path="/signup" component={SignUp}/>
+            <Route path="/login" component={Login}/>
             <Route path="/" exact component={ AddTransaction } />
             <Route path="/history"  component={ History } />
             <Route path="/Income" component={ Income } />
