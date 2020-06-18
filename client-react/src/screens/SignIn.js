@@ -3,7 +3,6 @@ import axios from "axios";
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 
 import '../transaction.min.css';
-import Links from '../components/nav/Links';
 
 class Login extends Component {
     constructor(){

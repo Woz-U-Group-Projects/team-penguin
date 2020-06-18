@@ -17,7 +17,8 @@ import Help from "./screens/Help";
 
 // Ryan
 import SignUp from "./screens/SignUp";
-import SignIn from "./screens/SignIn"
+import SignIn from "./screens/SignIn";
+import SignOut from "./screens/SignOut"
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Switch>
             <Route path="/signup" component={SignUp}/>
             <Route path="/signin" component={SignIn}/>
+            <Route path="/signin" component={SignOut}/>
             <Route path="/" exact component={ AddTransaction } />
             {/* Jeff made signup & Login page screens */}
             {/* go back thorugh and make everything uniform! */}
