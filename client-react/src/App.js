@@ -1,6 +1,6 @@
 import React from "react";
 import Signup_Login from './screens/forms/Signup_Login';
-import Login from './screens/forms/LoginForm';
+import LoginForm from './screens/forms/LoginForm';
 import AddTransaction from './screens/AddTransaction';
 import "./App.css";
 import History from "./screens/History";
@@ -14,8 +14,10 @@ import Income from "./screens/Income";
 import Expense from "./screens/Expense";
 import Savings from "./screens/Savings";
 import Help from "./screens/Help"; 
+
+// Ryan
 import SignUp from "./screens/SignUp";
-import Login from "./screens/Login";
+import SignIn from "./screens/SignIn"
 
 function App() {
   return (
@@ -30,12 +32,12 @@ function App() {
           {/* <GlorifiedCalculator /> */}
           <Switch>
             <Route path="/signup" component={SignUp}/>
-            <Route path="/login" component={Login}/>
+            <Route path="/signin" component={SignIn}/>
             <Route path="/" exact component={ AddTransaction } />
             {/* Jeff made signup & Login page screens */}
             {/* go back thorugh and make everything uniform! */}
             <Route path="/" exact component={ Signup_Login } />
-            <Route path="/Login" component={ Login } />
+            <Route path="/loginform" component={ LoginForm } />
             {/* Go back to see if below works */}
             <Route path="/addTransaction" component={ AddTransaction } /> 
             {/* <Route path="/" exact component={ AddTransaction } /> */}
