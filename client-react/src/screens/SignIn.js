@@ -45,16 +45,16 @@ class Login extends Component {
         return (
 
             <div>
-                <div className="PageSwitcher">
+                {/* <div className="PageSwitcher">
                     <Link to="/signin" className="PageSwitcher__Item">Sign In</Link>
                     ||
                     <Link to="/signup" className="PageSwitcher__Item PageSwitcher__Item--Active">Sign Up</Link>
-                </div>
+                </div> */}
 
                 <div className="FormTitle">
                     {/* <Link to="/signin" className="FormTitle__Link">Sign In</Link> or <Link to="/signup" className="FormTitle__Link FormTitle__Link--Active">Sign Up</Link> */}
 
-                    <NavLink to="/signin" activeClassName="FormTitle__Link--Active">Sign In</NavLink> or <NavLink to="/signup" activeClassName="FormTitle__Link--Active">Sign Up</NavLink>
+                    <NavLink to="/signin" activeClassName="FormTitle__Link--Active">Sign-In</NavLink> or <NavLink to="/signup" activeClassName="FormTitle__Link--Active">Sign-Up</NavLink>
                 </div>
 {/* 
                 <div className="FormCenter">
@@ -78,9 +78,9 @@ class Login extends Component {
                     <br />
                     <input ref={this.username}></input>
                     <br />
-                    <label htmlFor="password" type="password">Password: </label>
+                    <label htmlFor="password">Password: </label>
                     <br />
-                    <input ref={this.password}></input>
+                    <input ref={this.password} type="password"></input>
                 </form>
                 <button type="button" onClick={this.login}>Submit</button>
             </div>

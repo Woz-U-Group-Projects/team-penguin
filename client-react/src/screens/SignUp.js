@@ -47,11 +47,11 @@ class SignUp extends Component {
   render() {
     return (
       <div>
-        <div className="PageSwitcher">
+        {/* <div className="PageSwitcher">
           <Link to="/signin" className="PageSwitcher__Item">Sign In</Link>
             ||
             <Link to="/signup" className="PageSwitcher__Item PageSwitcher__Item--Active">Sign Up</Link>
-        </div>
+        </div> */}
 
         <div className="FormTitle">
           <NavLink to="/signin" activeClassName="FormTitle__Link--Active">Sign In</NavLink> or <NavLink to="/signup"
@@ -88,23 +88,23 @@ class SignUp extends Component {
         <form>
           <label htmlFor="firstname">First Name: </label>
           <br />
-          <input ref={this.firstname}></input>
+          <input ref={this.firstname} placeholder="Enter your first name"></input>
           <br />
           <label htmlFor="lastname">Last Name: </label>
           <br />
-          <input ref={this.lastname}></input>
+          <input ref={this.lastname} placeholder="Enter your last name"></input>
           <br />
-          <label htmlFor="email">Email: </label>
+          <label htmlFor="email" >Email: </label>
           <br />
-          <input ref={this.email}></input>
+          <input ref={this.email} placeholder="Enter your email"></input>
           <br />
           <label htmlFor="username">User Name: </label>
           <br />
-          <input ref={this.username}></input>
+          <input ref={this.username} placeholder="Enter your username"></input>
           <br />
-          <label htmlFor="password" type="password">Password: </label>
+          <label htmlFor="password">Password: </label>
           <br />
-          <input ref={this.password}></input>
+          <input ref={this.password} type="password" placeholder="Enter your password"></input>
           <br />
           <button type="button" onClick={this.addUser}>Submit</button>
         </form>
