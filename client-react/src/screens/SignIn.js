@@ -5,41 +5,54 @@ import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom'
 import '../transaction.min.css';
 
 class Login extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             username: "",
             password: ""
         }
-        // this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this)
+        // this.username = React.createRef();
+        // this.password = React.createRef();
+        
+        this.change = this.change.bind(this);
+        this.submit = this.submit.bind(this)
+    };
 
-        this.username = React.createRef();
-        this.password = React.createRef();   
-        };
-        // handleChange(e) {
-        //     let target = e.traget;
-        //     let value = target.type === 'checkbox' ? target.checked : target.value;
-        //     let name = target.name;
+    change(e) {
+        // let target = e.traget;
+        // let value = target.type === 'checkbox' ? target.checked : target.value;
+        // let name = target.name;
 
-        //     this.setState({
-        //         [name]: value
-        //     });
-
-        login = () => {
-            let url = "http://localhost:3001/users/login"; 
-            axios.post(url, {
-                username: this.username.current.value,
-                password: this.password.current.value
-            })
-            window.location.replace('/addTransaction')
+        this.setState({
+            [e.target.name]: e.target.value
+        });
     }
 
-    // handleSubmit(e) {
-    //     e.preventDefault();
-    //     console.log('The form was submitted with the following data: ');
-    //     console.log(this.state)
-    // }
+    submit(e) {
+        // e.preventDefault();
+        // console.log('The form was submitted with the following data: ');
+        // console.log(this.state)
+
+        e.preventDefault();
+        axios.post('/getToken', {
+            username: this.state.username,
+            password: this.state.password
+        }).then(res => {
+            localStorage.setItem('cool-jwt', res.data);
+            this.props.history.push('/addTransaction');
+        });
+    }
+
+    login = () => {
+        let url = "http://localhost:3001/users/login";
+        axios.post(url, {
+            username: this.username.current.value,
+            password: this.password.current.value
+        })
+        window.location.replace('/addTransaction')
+    }
+
+
 
     render() {
         return (
@@ -56,7 +69,7 @@ class Login extends Component {
 
                     <NavLink to="/signin" activeClassName="FormTitle__Link--Active">Sign-In</NavLink> or <NavLink to="/signup" activeClassName="FormTitle__Link--Active">Sign-Up</NavLink>
                 </div>
-{/* 
+                {/* 
                 <div className="FormCenter">
                     <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
                         <div className="FormField">
@@ -73,7 +86,7 @@ class Login extends Component {
                     </form>
                 </div> */}
 
-<form>
+                <form>
                     <label htmlFor="username">User Name: </label>
                     <br />
                     <input ref={this.username}></input>

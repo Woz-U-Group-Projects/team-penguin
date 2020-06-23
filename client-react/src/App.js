@@ -18,7 +18,8 @@ import Help from "./screens/Help";
 // Ryan
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
-import SignOut from "./screens/SignOut"
+import SignOut from "./screens/SignOut";
+import AuthenticatedComponent from "./authentication/AuthenticatedComponent"
 
 function App() {
   return (
@@ -41,7 +42,9 @@ function App() {
             <Route path="/" exact component={ Signup_Login } />
             <Route path="/loginform" component={ LoginForm } />
             {/* Go back to see if below works */}
+            <AuthenticatedComponent>
             <Route path="/addTransaction" component={ AddTransaction } /> 
+            </AuthenticatedComponent>
             {/* <Route path="/" exact component={ AddTransaction } /> */}
             <Route path="/history"  component={ History } />
             <Route path="/Income" component={ Income } />
