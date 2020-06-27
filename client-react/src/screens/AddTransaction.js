@@ -3,15 +3,17 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import '../transaction.min.css';
-import Links from '../components/nav/Links';
 import NewTransaction from '../components/NewTransaction';
 import RecentTransactions from '../components/transactionHistory/RecentTransactions';
-
+import CurrentBalance from "../components/calculator/CurrentBalance";
+import GlorifiedCalculator from "../components/calculator/GlorifiedCalculator";
+import Links from "../components/nav/Links"
 
 class AddTransaction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      transactions: [],
       users: []
     };
 
@@ -34,14 +36,14 @@ class AddTransaction extends React.Component {
 
   getData = () => {
     // Express uses port 3001 (react uses 3000)
-    let url = "http://localhost:3001/users/transactions_MainPage";
-    //let url = "http://localhost:3001/users/transactions"
+    let url = "http://localhost:3001/transactions";
     axios.get(url)
-      .then(response => this.setState({ users: response.data }));
+      .then(response => this.setState({ transactions: response.data }));
   };
 
   addTransaction = () => {
-    let url = "http://localhost:3001/users/transactions_AddTransaction";
+    //window.location.reload();
+    let url = "http://localhost:3001/transactions";
     axios.post(url, {
       paymentType: this.paymentType.current.value,
       date: this.state.date,
@@ -61,44 +63,60 @@ class AddTransaction extends React.Component {
         this.description.current.value = "";
       })
       .catch((error) => alert('Oops! There Is A Problem'))
-      window.location.reload();
+    window.location.reload();
   };
 
   render() {
     return (
-      <div className="form">
-        <NewTransaction />
-        <form className="form">
-          <table className="table">
-            <tbody>
-              <tr>
-                <td><select required ref={this.paymentType} className="selectFields" defaultValue="N/A" name="paymentType">
-                  <option value="N/A" disabled className="type">Select Payment Type: </option>
-                  <option value="Direct Deposit">Direct Deposit</option>
-                  <option value="Check">Check</option>
-                  <option value="Credit Card">Credit Card</option>
-                  <option value="Cash">Cash</option>
-                  <option value="Other">Other</option>
-                </select></td>
-                <td><DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText="Date" /></td>
-                <td><select ref={this.type} className="selectFields" defaultValue="N/A (Amount Was Not Added)" name="type">
-                  <option value="N/A (Amount Was Not Added)" disabled className="type">Transaction Type: </option>
-                  <option value="Income">Income</option>
-                  <option value="Expense">Expense</option>
-                  <option value="Savings">Savings</option>
-                </select></td>
-                <td>
-                <input ref={this.amount} className="amount" placeholder="$ Dollar Amount" type="number"  /></td>
-                <td><input ref={this.description} className="description" placeholder="Description"/></td>
-              </tr>
-            </tbody>
-          </table>
-          <button type="button" className="addTransaction" onClick={this.addTransaction}>add</button>
-          <p className="note">*** Thank you for choosing Budgeteer! Please note that this application is based on whole numbers and all demcimals will be rounded to the nearest dollar. - Team Penguin***</p>
-        </form>
-        <h4>Recent Transactions</h4>
-        <RecentTransactions />
-        <Links />
+      <div>
+        <div className="head">
+          <CurrentBalance />
+        </div>
+        <div>
+          <GlorifiedCalculator />
+        </div>
+        <div className="container">
+
+          <div className="form">
+
+            <NewTransaction />
+            <form className="form">
+              <table className="table">
+                <tbody>
+                  <tr>
+                    <td><select required ref={this.paymentType} className="selectFields" defaultValue="N/A" name="paymentType">
+                      <option value="N/A" disabled className="type">Select Payment Type: </option>
+                      <option value="Direct Deposit">Direct Deposit</option>
+                      <option value="Check">Check</option>
+                      <option value="Credit Card">Credit Card</option>
+                      <option value="Cash">Cash</option>
+                      <option value="Other">Other</option>
+                    </select></td>
+                    <td><DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText="Date" /></td>
+                    <td><select ref={this.type} className="selectFields" defaultValue="N/A (Amount Was Not Added)" name="type">
+                      <option value="N/A (Amount Was Not Added)" disabled className="type">Transaction Type: </option>
+                      <option value="Income">Income</option>
+                      <option value="Expense">Expense</option>
+                      <option value="Savings">Savings</option>
+                    </select></td>
+                    <td>
+                      <input ref={this.amount} className="amount" placeholder="$ Dollar Amount" type="number" /></td>
+                    <td><input ref={this.description} className="description" placeholder="Description" /></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" className="addTransaction" onClick={this.addTransaction}>add</button>
+              <p className="note">*** Thank you for choosing Budgeteer! Please note that this application is based on whole numbers and all demcimals will be rounded to the nearest dollar. - Team Penguin***</p>
+            </form>
+            <h4>Recent Transactions</h4>
+            <RecentTransactions />
+
+          </div>
+          <div className="form">
+            <Links />
+          </div>
+        </div>
+
       </div>
     );
   }

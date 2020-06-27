@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { getJwt } from '../authentication/jwt';
+import { withRouter } from 'react-router-dom'
 
 class AuthenticatedComponent extends Component {
     constructor(props) {
@@ -15,7 +17,7 @@ class AuthenticatedComponent extends Component {
             this.props.history.push('/login');
         }
 
-        axios.get('/getUser/', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => res.setState({
+        axios.get('/getUser', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => this.setState({
             user: res.data
         })). catch(err => {
             localStorage.removeItem('cool-jwt');
@@ -40,4 +42,4 @@ class AuthenticatedComponent extends Component {
     }
 }
 
-export default AuthenticatedComponent;
+export default withRouter(AuthenticatedComponent);

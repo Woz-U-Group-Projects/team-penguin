@@ -13,7 +13,7 @@ class Login extends Component {
         }
         // this.username = React.createRef();
         // this.password = React.createRef();
-        
+
         this.change = this.change.bind(this);
         this.submit = this.submit.bind(this)
     };
@@ -56,20 +56,21 @@ class Login extends Component {
 
     render() {
         return (
-
             <div>
-                {/* <div className="PageSwitcher">
+                
+                <div className="signin">
+                    {/* <div className="PageSwitcher">
                     <Link to="/signin" className="PageSwitcher__Item">Sign In</Link>
                     ||
                     <Link to="/signup" className="PageSwitcher__Item PageSwitcher__Item--Active">Sign Up</Link>
-                </div> */}
+                    </div> */}
 
-                <div className="FormTitle">
-                    {/* <Link to="/signin" className="FormTitle__Link">Sign In</Link> or <Link to="/signup" className="FormTitle__Link FormTitle__Link--Active">Sign Up</Link> */}
+                    <div className="FormTitle">
+                        {/* <Link to="/signin" className="FormTitle__Link">Sign In</Link> or <Link to="/signup" className="FormTitle__Link FormTitle__Link--Active">Sign Up</Link> */}
 
-                    <NavLink to="/signin" activeClassName="FormTitle__Link--Active">Sign-In</NavLink> or <NavLink to="/signup" activeClassName="FormTitle__Link--Active">Sign-Up</NavLink>
-                </div>
-                {/* 
+                        <NavLink to="/signin" activeClassName="FormTitle__Link--Active">Sign-In</NavLink> or <NavLink to="/signup" activeClassName="FormTitle__Link--Active">Sign-Up</NavLink>
+                    </div>
+                    {/* 
                 <div className="FormCenter">
                     <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
                         <div className="FormField">
@@ -86,16 +87,19 @@ class Login extends Component {
                     </form>
                 </div> */}
 
-                <form>
-                    <label htmlFor="username">User Name: </label>
-                    <br />
-                    <input ref={this.username}></input>
-                    <br />
-                    <label htmlFor="password">Password: </label>
-                    <br />
-                    <input ref={this.password} type="password"></input>
-                </form>
-                <button type="button" onClick={this.login}>Submit</button>
+                    <form className="particulars">
+                        <label htmlFor="username">User Name: </label>
+                        <br />
+                        <input ref={this.username}></input>
+                        <br />
+                        <label htmlFor="password">Password: </label>
+                        <br />
+                        <input ref={this.password} type="password"></input>
+                    </form>
+                    <button className="button" type="button" onClick={this.login}>Submit</button>
+                </div>
+                <div />
+                
             </div>
         )
     }

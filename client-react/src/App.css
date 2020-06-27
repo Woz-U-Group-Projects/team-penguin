@@ -109,6 +109,7 @@ color =  240, 242, 242 */
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
+    height: 120px;
 } 
 
 .glorified {
@@ -323,9 +324,40 @@ select:hover {
 .table {
     font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
     padding-top: 50px;
-    width: 100%;
     text-align: center;
     vertical-align: middle;
+}
+
+.thead {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    padding-top: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border: 5px solid black;
+}
+
+.tbody {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    padding-top: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border: 5px solid black;
+}
+
+.trow {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    padding-top: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border: 5px solid black;
+}
+
+.tdata {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    padding-top: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
 }
 
 .form {
@@ -444,3 +476,17 @@ p {
     display: flex;
     justify-content: space-around;
 }
+
+.signin {
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+.particulars {
+    margin-top: 10px;
+}
+
+.button {
+    margin-top: 20px;
+}
+
