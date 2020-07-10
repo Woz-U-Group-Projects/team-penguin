@@ -14,6 +14,7 @@ var authService ={
         });
         return token;
     },
+
     verifyUser: function(token){
         try {
             let decoded = jwt.verify(token, 'secretkey');
@@ -23,6 +24,7 @@ var authService ={
             return null;
         }
     },
+    
     hashPassword: function(plainTextPassword){
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(plainTextPassword, salt);

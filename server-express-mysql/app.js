@@ -13,8 +13,6 @@ var cors = require("cors");
 // var passport = require('passport');
 // var session = require('express-session');
 
-var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
 //Delete later not needed
 //var tasksRouter = require('./routes/tasks');
 var transactionsRouter = require('./routes/transactions');
@@ -22,7 +20,7 @@ var transactionsRouter = require('./routes/transactions');
 var app = express();
 
 // Exporting associations from models/index.js - Ryan
-var models = require('./models');
+// var models = require('./models');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,7 +50,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-app.use('/', indexRouter);
+app.use('/', require('./routes/index'));
+
+// Signup and Login (YouTube MERN)
+app.use('/user', require('./routes/users'));
+// app.use('auth', require('./services/auth'));
+
 // app.use('/users', usersRouter);
 //Delete Later Not needed
 // app.use('/tasks', tasksRouter);

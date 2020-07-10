@@ -1,19 +1,26 @@
 var express = require("express");
 var router = express.Router();
 var models = require("../models");
-var Sequelize = require("sequelize");
-// var op = Sequelize.Op;
-// var passport = require('../services/passport');
+// var Sequelize = require("sequelize");
 var authService = require("../services/auth");
 
+// YT MERN
+// var users = require('../models/users');
+// var bcrypt = require('bcryptjs');
+
 // user signup frontend route
-router.get("/signup", function (req, res, next) {
-  res.render("signup");
-});
+// router.post("/signup", function (req, res, next) {
+//   res.send("signup");
+// });
 
 // user signup with JWT Auth
 //verified
 router.post("/signup", function (req, res, next) {
+  const { firstname, lastname, email, username, password } = req.body;
+
+  if (!firstname || !lastname || !email || !username || !password) {
+    return res.status(400).json({ msg: 'Please enter all fields' });
+  }
   models.users
     .findOrCreate({
       where: { username: req.body.username },
@@ -21,8 +28,7 @@ router.post("/signup", function (req, res, next) {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
-        password: authService.hashPassword(req.body.password),
-        // password: req.body.password
+        password: authService.hashPassword(req.body.password)
       },
     })
     .spread(function (result, created) {
@@ -34,6 +40,47 @@ router.post("/signup", function (req, res, next) {
       }
     });
 });
+
+// Signup/Login YT MERN
+// router.post('/signup', (req, res) => {
+//   const { firstname, lastname, email, username, password } = req.body;
+
+//   if(!firstname || !lastname || !email || !username || !password) {
+//     return res.status(400).json({ msg: 'Please enter all fields' });
+//   }
+
+//     models.users.findOne({ email })
+//     .then(user => {
+//       if(user) return res.status(400).json({ msg: 'User already exists' });
+
+//       const newUser = new users({
+//         firstname,
+//         lastname,
+//         email,
+//         username,
+//         password
+//       });
+
+//       // bcrypt.genSalt(10, (err, salt) => {
+//       //   bcrypt.hash(newUser.password, salt, (err, hash) => {
+//             if(err) throw err;
+//             // newUser.password = hash;
+//             newUser.save()
+//             .then(user => {
+//                 res.json({
+//                   user: {
+//                     firstname: user.firstname,
+//                     lastname: user.lastname,
+//                     username: user.username,
+//                     email: user.email,
+//                     password: authService.hashPassword(req.body.password),
+//                   }
+//                 })         
+//             })
+//         // })
+//     // })
+//     })
+// })
 
 //may not need and can delete for later
 // user login frontend route
@@ -69,6 +116,8 @@ router.post("/login", function (req, res, next) {
           //res.redirect('addTransaction');
         } else {
           console.log("Wrong Password");
+          res.status(400);
+          res.send("Wrong Password");
           //res.redirect('login');
         }
       }
